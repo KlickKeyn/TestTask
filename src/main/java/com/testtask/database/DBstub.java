@@ -2,11 +2,15 @@ package com.testtask.database;
 
 
 import com.testtask.dao.model.User;
+import com.testtask.dao.repository.UserRepository;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class DBstub {
-    private List<User> users;
+@Component
+public class DBstub implements UserRepository {
+    private List<User> users = new ArrayList<>();
 
     public List<User> findAll() {
         return users;
@@ -16,12 +20,12 @@ public class DBstub {
         return users.get(id);
     }
 
-    public Integer add(User user) {
+    public User add(User user) {
         users.add(user);
         Integer newId = users.indexOf(user);
         user.setId(newId);
 
-        return newId;
+        return user;
     }
 
     public User update(User user) {

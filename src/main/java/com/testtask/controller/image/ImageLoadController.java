@@ -1,4 +1,4 @@
-package com.testtask.controller;
+package com.testtask.controller.image;
 
 import com.testtask.service.file_service.ImageLoadService;
 import lombok.RequiredArgsConstructor;
@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/load")
+@RequestMapping("/image")
 @RequiredArgsConstructor
 public class ImageLoadController {
     private final ImageLoadService imageLoadService;
 
-    @PostMapping("/image")
+    @PostMapping("/load")
     public String loadImage(@RequestParam("file") MultipartFile file) {
         return imageLoadService.load(file);
     }
