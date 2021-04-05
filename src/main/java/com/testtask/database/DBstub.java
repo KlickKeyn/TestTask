@@ -1,10 +1,8 @@
 package com.testtask.database;
 
-
 import com.testtask.dao.model.user.User;
 import com.testtask.dao.repository.UserRepository;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
