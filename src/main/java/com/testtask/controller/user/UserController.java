@@ -1,7 +1,7 @@
 package com.testtask.controller.user;
 
-import com.testtask.dao.model.User;
-import com.testtask.service.user_service.UserDBService;
+import com.testtask.dao.model.user.User;
+import com.testtask.service.user_service.main_functional.UserAccountManagmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("user")
 @RequiredArgsConstructor
 public class UserController {
-    private final UserDBService userDBService;
+    private final UserAccountManagmentService userAccountManagmentService;
 
     @PostMapping("/createUser")
     public Integer createUser(@RequestBody User user) {
-        return null;
+        return userAccountManagmentService.addNewUser(user);
     }
 
     @GetMapping("/getUserInfo")
     public User getUser(@RequestParam Integer id) {
-        return null;
+        return userAccountManagmentService.getUserInfo(id);
     }
 }

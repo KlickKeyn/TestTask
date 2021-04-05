@@ -1,8 +1,8 @@
-package com.testtask.service.user_service;
+package com.testtask.service.user_service.database;
 
-import com.testtask.dao.model.User;
+import com.testtask.dao.model.user.User;
 import com.testtask.database.DBstub;
-import com.testtask.exception.file.UserException;
+import com.testtask.exception.user.UserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

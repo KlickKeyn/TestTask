@@ -2,7 +2,7 @@ package com.testtask.dao.model.enums;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public enum UserStateEnum {
+public enum UserStatusEnum {
     @JsonProperty("ONLINE")
     ONLINE("ONLINE"),
     @JsonProperty("OFFLINE")
@@ -10,5 +10,5 @@ public enum UserStateEnum {
 
     private final String value;
 
-    UserStateEnum(String value) { this.value = value; }
+    UserStatusEnum(String value) { this.value = value; }
 }

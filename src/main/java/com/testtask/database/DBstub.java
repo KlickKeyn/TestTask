@@ -1,7 +1,7 @@
 package com.testtask.database;
 
 
-import com.testtask.dao.model.User;
+import com.testtask.dao.model.user.User;
 import com.testtask.dao.repository.UserRepository;
 import org.springframework.stereotype.Component;
 

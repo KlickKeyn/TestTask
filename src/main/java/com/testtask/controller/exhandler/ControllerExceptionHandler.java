@@ -1,7 +1,7 @@
 package com.testtask.controller.exhandler;
 
 import com.testtask.exception.file.ImageLoadException;
-import com.testtask.exception.file.UserException;
+import com.testtask.exception.user.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,6 +1,6 @@
 package com.testtask.dao.repository;
 
-import com.testtask.dao.model.User;
+import com.testtask.dao.model.user.User;
 
 import java.util.List;
 

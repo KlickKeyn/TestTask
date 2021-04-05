@@ -16,18 +16,13 @@ public class ImageLoadService implements FileLoader {
 
     @Override
     public String load(MultipartFile file) {
-        if (file == null) {
-            throw new ImageLoadException("Image file is empty");
-        }
+        throwIfInvalidFile(file);
 
-        File uploadDir = new File(uploadPath);
+        throwIfFileIsNotJpgImage(file);
 
-        if (!uploadDir.exists()) {
-            uploadDir.mkdir();
-        }
+        crtDirIfItNotExist(uploadPath);
 
-        String uuidFile = UUID.randomUUID().toString();
-        String resultFileName = uuidFile + "." + file.getOriginalFilename();
+        String resultFileName = getUniqueFileName(file);
 
         try {
             file.transferTo(new File(uploadPath + resultFileName));
@@ -37,4 +32,35 @@ public class ImageLoadService implements FileLoader {
 
         return resultFileName;
     }
+
+    private void throwIfFileIsNotJpgImage(MultipartFile file) {
+        if (!isJpgFile(file)) {
+            throw new ImageLoadException("The file does not match the image jpg format");
+        }
+    }
+
+    private void throwIfInvalidFile(MultipartFile file) {
+        if (file == null) {
+            throw new ImageLoadException("Image file is empty");
+        }
+    }
+
+    private boolean isJpgFile(MultipartFile file) {
+        return file.getContentType().split("/")[1].equals("jpeg");
+
+    }
+
+    private String getUniqueFileName(MultipartFile file) {
+        String uuidFile = UUID.randomUUID().toString();
+        return uuidFile + "." + file.getOriginalFilename();
+    }
+
+    private void crtDirIfItNotExist(String dirPath) {
+        File uploadDir = new File(dirPath);
+
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir();
+        }
+    }
+
 }
