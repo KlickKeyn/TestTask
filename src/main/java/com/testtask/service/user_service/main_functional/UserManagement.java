@@ -1,12 +1,13 @@
 package com.testtask.service.user_service.main_functional;
 
 import com.testtask.dao.model.user.User;
-import com.testtask.dao.model.user.UserStatusInfo;
+import com.testtask.dto.user.UserStatusInfo;
+import com.testtask.dto.user.IdData;
 
 public interface UserManagement {
     Integer addNewUser(User user);
 
-    User getUserInfo(Integer id);
+    User getUserInfo(IdData idData);
 
     UserStatusInfo changeUserStatus(UserStatusInfo userStatusInfo);
 }

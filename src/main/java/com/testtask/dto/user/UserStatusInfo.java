@@ -1,4 +1,4 @@
-package com.testtask.dao.model.user;
+package com.testtask.dto.user;
 
 import com.testtask.dao.model.enums.UserStatusEnum;
 import lombok.Data;

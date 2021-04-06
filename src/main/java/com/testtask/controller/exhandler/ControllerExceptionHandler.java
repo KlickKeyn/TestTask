@@ -1,6 +1,7 @@
 package com.testtask.controller.exhandler;
 
 import com.testtask.exception.file.ImageLoadException;
+import com.testtask.exception.statistics.StatisticsException;
 import com.testtask.exception.user.UserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,11 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(UserException.class)
     protected ResponseEntity<String> handleUserException(UserException ex) {
+        return new ResponseEntity<>("error " + ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(StatisticsException.class)
+    protected ResponseEntity<String> handleStatisticsException(StatisticsException ex) {
         return new ResponseEntity<>("error " + ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

@@ -3,6 +3,7 @@ package com.testtask.dao.model.user;
 import com.testtask.dao.model.enums.UserStatusEnum;
 import lombok.Data;
 import javax.validation.constraints.Email;
+import java.util.Date;
 
 @Data
 public class User {
@@ -12,4 +13,5 @@ public class User {
     @Email
     private String email;
     private UserStatusEnum statusEnum;
+    private Date statusChangeDate;
 }

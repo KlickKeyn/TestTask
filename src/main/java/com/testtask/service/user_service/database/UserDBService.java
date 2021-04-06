@@ -1,7 +1,7 @@
 package com.testtask.service.user_service.database;
 
 import com.testtask.dao.model.user.User;
-import com.testtask.database.DBstub;
+import com.testtask.database.user.UserDBStub;
 import com.testtask.exception.user.UserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,13 +10,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserDBService implements InteractionWithDB {
+public class UserDBService implements InteractionWithDB<User> {
 
-    private final DBstub dBstub;
+    private final UserDBStub userDBStub;
 
     @Override
     public List<User> getAll() {
-        return dBstub.findAll();
+        return userDBStub.findAll();
     }
 
     @Override
@@ -25,14 +25,14 @@ public class UserDBService implements InteractionWithDB {
 
         throwIfNoIdInDb(id);
 
-        return dBstub.findById(id);
+        return userDBStub.findById(id);
     }
 
     @Override
     public Integer save(User user) {
         throwIfInvalidUser(user);
 
-        User addedUser = dBstub.add(user);
+        User addedUser = userDBStub.add(user);
 
         return addedUser.getId();
     }
@@ -41,7 +41,7 @@ public class UserDBService implements InteractionWithDB {
     public User update(User user) {
         throwIfInvalidUser(user);
 
-        return dBstub.update(user);
+        return userDBStub.update(user);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class UserDBService implements InteractionWithDB {
 
         throwIfNoIdInDb(id);
 
-        dBstub.delete(id);
+        userDBStub.delete(id);
     }
 
     private Integer getMaxUserId() {

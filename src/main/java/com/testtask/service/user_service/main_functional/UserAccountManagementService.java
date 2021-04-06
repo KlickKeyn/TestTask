@@ -2,13 +2,15 @@ package com.testtask.service.user_service.main_functional;
 
 import com.testtask.dao.model.enums.UserStatusEnum;
 import com.testtask.dao.model.user.User;
-import com.testtask.dao.model.user.UserStatusInfo;
+import com.testtask.dto.user.UserStatusInfo;
+import com.testtask.dto.user.IdData;
 import com.testtask.exception.user.UserException;
 import com.testtask.service.file_service.ImageLoadService;
 import com.testtask.service.user_service.database.UserDBService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,7 +53,13 @@ public class UserAccountManagementService implements UserManagement{
     }
 
     @Override
-    public User getUserInfo(Integer id) {
+    public User getUserInfo(IdData idData) {
+        if (idData == null) {
+            throw new UserException("Invalid id dto");
+        }
+
+        Integer id = idData.getId();
+
         return userDBService.findById(id);
     }
 
@@ -84,6 +92,8 @@ public class UserAccountManagementService implements UserManagement{
         userStatusInfo.setPrevStatus(userPrevStatusEnum);
 
         user.setStatusEnum(userNewStatusEnum);
+
+        user.setStatusChangeDate(new Date());
 
         userDBService.update(user);
 

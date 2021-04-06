@@ -1,17 +1,15 @@
 package com.testtask.service.user_service.database;
 
-import com.testtask.dao.model.user.User;
-
 import java.util.List;
 
-public interface InteractionWithDB {
-    List<User> getAll();
+public interface InteractionWithDB<T> {
+    List<T> getAll();
 
-    User findById(Integer id);
+    T findById(Integer id);
 
-    Integer save(User user);
+    Integer save(T entity);
 
-    User update(User user);
+    T update(T entity);
 
     void delete(Integer id);
 }

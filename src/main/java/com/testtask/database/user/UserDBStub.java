@@ -1,13 +1,13 @@
-package com.testtask.database;
+package com.testtask.database.user;
 
 import com.testtask.dao.model.user.User;
-import com.testtask.dao.repository.UserRepository;
+import com.testtask.dao.repository.Repository;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class DBstub implements UserRepository {
+public class UserDBStub implements Repository<User> {
     private List<User> users = new ArrayList<>();
 
     public List<User> findAll() {
