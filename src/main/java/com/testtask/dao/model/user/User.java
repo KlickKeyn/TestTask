@@ -11,5 +11,5 @@ public class User {
     private String name;
     @Email
     private String email;
-    private UserStatusEnum stateEnum;
+    private UserStatusEnum statusEnum;
 }

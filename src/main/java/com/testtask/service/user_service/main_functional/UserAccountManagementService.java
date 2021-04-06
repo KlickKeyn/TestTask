@@ -45,7 +45,7 @@ public class UserAccountManagementService implements UserManagement{
             throw new UserException("A user with this email address is already registered");
         }
 
-        user.setStateEnum(UserStatusEnum.ONLINE);
+        user.setStatusEnum(UserStatusEnum.ONLINE);
 
         return userDBService.save(user);
     }
@@ -57,7 +57,37 @@ public class UserAccountManagementService implements UserManagement{
 
     @Override
     public UserStatusInfo changeUserStatus(UserStatusInfo userStatusInfo) {
-        return null;
+        if (userStatusInfo == null) {
+            throw new UserException("Invalid user status info");
+        }
+
+        Integer userId = userStatusInfo.getId();
+
+        if (userId == null) {
+            throw new UserException("Invalid id");
+        }
+
+        UserStatusEnum userNewStatusEnum = userStatusInfo.getNewStatus();
+
+        if (userNewStatusEnum == null) {
+            throw new UserException("Invalid new status");
+        }
+
+        User user = userDBService.findById(userId);
+
+        UserStatusEnum userPrevStatusEnum = user.getStatusEnum();
+
+        if (userPrevStatusEnum.equals(userNewStatusEnum)) {
+            throw new UserException("The user already has this status set");
+        }
+
+        userStatusInfo.setPrevStatus(userPrevStatusEnum);
+
+        user.setStatusEnum(userNewStatusEnum);
+
+        userDBService.update(user);
+
+        return userStatusInfo;
     }
 
     private boolean isEmailValid(String email) {
