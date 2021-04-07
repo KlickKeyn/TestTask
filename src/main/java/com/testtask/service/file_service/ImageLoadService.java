@@ -26,6 +26,12 @@ public class ImageLoadService implements FileLoader {
         String resultFileName = getUniqueFileName(file);
 
         try {
+            Thread.sleep(10000);
+        } catch (InterruptedException ex) {
+            throw new ImageLoadException("Interrupt exception", ex);
+        }
+
+        try {
             file.transferTo(new File(uploadPath + resultFileName));
         } catch (IOException ex) {
             throw new ImageLoadException("Failed to save image", ex);

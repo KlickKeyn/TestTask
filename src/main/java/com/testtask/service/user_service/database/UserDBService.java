@@ -21,6 +21,12 @@ public class UserDBService implements InteractionWithDB<User> {
 
     @Override
     public User findById(Integer id) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new UserException("Interrupt exception", ex);
+        }
+
         throwIfInvalidId(id);
 
         throwIfNoIdInDb(id);
@@ -32,6 +38,12 @@ public class UserDBService implements InteractionWithDB<User> {
     public Integer save(User user) {
         throwIfInvalidUser(user);
 
+        try {
+            Thread.sleep(8000);
+        } catch (InterruptedException ex) {
+            throw new UserException("Interrupt exception", ex);
+        }
+
         User addedUser = userDBStub.add(user);
 
         return addedUser.getId();
@@ -40,6 +52,12 @@ public class UserDBService implements InteractionWithDB<User> {
     @Override
     public User update(User user) {
         throwIfInvalidUser(user);
+
+        try {
+            Thread.sleep(8000);
+        } catch (InterruptedException ex) {
+            throw new UserException("Interrupt exception", ex);
+        }
 
         return userDBStub.update(user);
     }

@@ -14,7 +14,8 @@ public class UserDBStub implements Repository<User> {
         return users;
     }
 
-    public User findById(Integer id) {
+    public User findById(Integer id){
+
         return users.get(id);
     }
 

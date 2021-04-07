@@ -5,7 +5,7 @@ import java.util.List;
 public interface Repository<T> {
     List<T> findAll();
 
-    T findById(Integer id);
+    T findById(Integer id) throws InterruptedException;
 
     T add(T entity);
 

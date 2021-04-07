@@ -21,6 +21,12 @@ public class StatisticsRequestDBService implements InteractionWithDB<StatisticsR
 
     @Override
     public StatisticsRequest findById(Integer id) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new StatisticsException("Interrupt exception", ex);
+        }
+
         throwIfInvalidId(id);
 
         throwIfNoIdInDb(id);
